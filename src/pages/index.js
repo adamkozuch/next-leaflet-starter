@@ -38,11 +38,6 @@ export default function Home() {
                      https://maps.google.com/?ll=52.2297,21.0122<br />
                   </Popup>
                 </Marker>
-                <Marker position={DEFAULT_CENTER_OTHER}>
-                  <Popup>
-                    Otwórz w Google Maps<br />
-                  </Popup>
-                </Marker>
               </>
             )}
           </Map>
