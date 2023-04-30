@@ -8,13 +8,14 @@ import Button from '@components/Button';
 
 import styles from '@styles/Home.module.scss';
 
-const DEFAULT_CENTER = [38.907132, -77.036546]
+const DEFAULT_CENTER = [52.2297, 21.0122]
 
+const DEFAULT_CENTER_OTHER = [51.2297, 21.0122]
 export default function Home() {
   return (
     <Layout>
       <Head>
-        <title>Next.js Leaflet Starter</title>
+        <title>Kontenery PCK</title>
         <meta name="description" content="Create mapping apps with Next.js Leaflet Starter" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -22,7 +23,7 @@ export default function Home() {
       <Section>
         <Container>
           <h1 className={styles.title}>
-            Next.js Leaflet Starter
+            Mapa kontenerów PCK
           </h1>
 
           <Map className={styles.homeMap} width="800" height="400" center={DEFAULT_CENTER} zoom={12}>
@@ -34,20 +35,17 @@ export default function Home() {
                 />
                 <Marker position={DEFAULT_CENTER}>
                   <Popup>
-                    A pretty CSS3 popup. <br /> Easily customizable.
+                     https://maps.google.com/?ll=52.2297,21.0122<br />
+                  </Popup>
+                </Marker>
+                <Marker position={DEFAULT_CENTER_OTHER}>
+                  <Popup>
+                    Otwórz w Google Maps<br />
                   </Popup>
                 </Marker>
               </>
             )}
           </Map>
-
-          <p className={styles.description}>
-            <code className={styles.code}>yarn create next-app -e https://github.com/colbyfayock/next-leaflet-starter</code>
-          </p>
-
-          <p className={styles.view}>
-            <Button href="https://github.com/colbyfayock/next-leaflet-starter">Vew on GitHub</Button>
-          </p>
         </Container>
       </Section>
     </Layout>
