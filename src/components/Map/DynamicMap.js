@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
+import {useEffect, useState} from 'react';
 import Leaflet from 'leaflet';
 import * as ReactLeaflet from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 import styles from './Map.module.scss';
+import {Marker, Popup, useMapEvents} from "react-leaflet";
 
 const { MapContainer } = ReactLeaflet;
 
@@ -13,6 +14,26 @@ const Map = ({ children, className, width, height, ...rest }) => {
   if ( className ) {
     mapClassName = `${mapClassName} ${className}`;
   }
+
+  function LocationMarker() {
+  const [position, setPosition] = useState(null)
+  const map = useMapEvents({
+    click() {
+      map.locate()
+    },
+    locationfound(e) {
+      setPosition(e.latlng)
+      map.flyTo(e.latlng, map.getZoom())
+    },
+  })
+
+  return position === null ? null : (
+    <Marker position={position}>
+      <Popup>You are here</Popup>
+    </Marker>
+  )
+}
+
 
   useEffect(() => {
     (async function init() {
@@ -28,6 +49,7 @@ const Map = ({ children, className, width, height, ...rest }) => {
   return (
     <MapContainer className={mapClassName} {...rest}>
       {children(ReactLeaflet, Leaflet)}
+      <LocationMarker/>
     </MapContainer>
   )
 }
